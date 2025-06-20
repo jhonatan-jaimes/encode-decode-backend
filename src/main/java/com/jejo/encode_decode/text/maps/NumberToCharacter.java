@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.maps;
+package com.jejo.encode_decode.text.maps;
 
 import java.util.HashMap;
 import java.util.Map;

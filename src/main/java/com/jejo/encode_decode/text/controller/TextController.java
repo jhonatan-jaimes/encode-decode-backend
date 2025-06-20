@@ -1,8 +1,7 @@
-package com.jejo.encode_decode.controller;
+package com.jejo.encode_decode.text.controller;
 
-import com.jejo.encode_decode.entity.DecodeEntity;
-import com.jejo.encode_decode.entity.EncodeEntity;
-import com.jejo.encode_decode.service.TextService;
+import com.jejo.encode_decode.text.entity.TextEntity;
+import com.jejo.encode_decode.text.service.TextService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +19,12 @@ public class TextController {
     }
 
     @PostMapping("/encode")
-    public ResponseEntity<EncodeEntity> encodeText(@RequestBody EncodeEntity encodeEntity){
+    public ResponseEntity<TextEntity> encodeText(@RequestBody TextEntity encodeEntity){
         return ResponseEntity.ok(textService.encodeEntity(encodeEntity));
     }
 
     @PostMapping("/decode")
-    public ResponseEntity<DecodeEntity> decodeText(@RequestBody DecodeEntity decodeEntity){
+    public ResponseEntity<TextEntity> decodeText(@RequestBody TextEntity decodeEntity){
         return ResponseEntity.ok(textService.decodeEntity(decodeEntity));
     }
 }

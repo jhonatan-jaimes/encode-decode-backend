@@ -1,12 +1,12 @@
-package com.jejo.encode_decode.entity;
+package com.jejo.encode_decode.text.entity;
 
-public class EncodeEntity {
+public class TextEntity {
     String text;
 
-    public EncodeEntity() {
+    public TextEntity() {
     }
 
-    public EncodeEntity(String text) {
+    public TextEntity(String text) {
         this.text = text;
     }
 

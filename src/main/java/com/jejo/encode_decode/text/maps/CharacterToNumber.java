@@ -1,9 +1,9 @@
-package com.jejo.encode_decode.maps;
+package com.jejo.encode_decode.text.maps;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChatacterToNumber {
+public class CharacterToNumber {
     public static final Map<Character, String> characterToNumber = new HashMap<>();
     static {
         // Letras minúsculas a números (como Strings)
