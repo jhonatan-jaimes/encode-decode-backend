@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1")
-@CrossOrigin(origins = "*")
 public class TextController {
 
     private final TextService textService;
