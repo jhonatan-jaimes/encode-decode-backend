@@ -3,7 +3,7 @@ package com.jejo.encode_decode.text.maps;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BibliotecaGeneral {
+public class CharacterToCode {
     public static final Map<Character, String> bibliotecaGeneralL = new HashMap<>();
 
     static {
