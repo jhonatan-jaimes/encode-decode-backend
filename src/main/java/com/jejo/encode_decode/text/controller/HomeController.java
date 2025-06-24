@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class HomeController {
-    @GetMapping
+    @GetMapping("/wake-up")
     public ResponseEntity<HttpStatus> wakeUp(){
         return ResponseEntity.ok(HttpStatus.OK);
     }
