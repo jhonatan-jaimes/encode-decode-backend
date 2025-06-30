@@ -14,9 +14,13 @@ public class WebConfigCors {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173/")
-                        .allowedOrigins("https://encode-decode-page.onrender.com/")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
+                        .allowedOrigins(
+                                "http://localhost:5173/",
+                                "https://encode-decode-page.onrender.com/"
+                        )
+                        .allowedHeaders("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .maxAge(3600);
             }
         };
     }
