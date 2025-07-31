@@ -1,7 +1,7 @@
 package com.jejo.encode_decode.text.entity;
 
 public class TextEntity {
-    String text;
+    private String text;
 
     public TextEntity() {
     }
