@@ -4,7 +4,10 @@ import com.jejo.encode_decode.text.entity.TextEntity;
 import com.jejo.encode_decode.text.maps.*;
 import com.jejo.encode_decode.text.service.TextService;
 import com.jejo.encode_decode.text.utility.Code;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class TextImplement implements TextService {
@@ -16,8 +19,7 @@ public class TextImplement implements TextService {
         TextEntity textEntity = new TextEntity();
 
         if (text == null || text.getText().isEmpty()) {
-            textEntity.setText("El texto no puede ser vacío.");
-            return textEntity;
+            throw new IllegalArgumentException("El texto no puede estar vacio.");
         }
 
         String randomCode = code.codeRandom();
@@ -27,14 +29,14 @@ public class TextImplement implements TextService {
         for (char c : combined.toCharArray()) {
             String encodeValue = CharacterToCode.getValue(c);
             if (encodeValue == null) {
-                textEntity.setText("El símbolo '" + c + "' no tiene un mapeo definido.");
-                return textEntity;
+                throw new IllegalArgumentException("El carácter '" + c +
+                        "' no tiene un número mapeado.");
             }
             for (char i : encodeValue.toCharArray()) {
                 String enVal = CharacterToNumber.getNumero(i);
                 if (enVal == null) {
-                    textEntity.setText("El carácter '" + i + "' no tiene un número mapeado.");
-                    return textEntity;
+                    throw new IllegalArgumentException("El carácter '" + i +
+                            "' no tiene un número mapeado.");
                 }
                 int multiplied = Integer.parseInt(enVal) * Integer.parseInt(randomCode);
                 String multipliedStr = String.valueOf(multiplied);
@@ -57,19 +59,14 @@ public class TextImplement implements TextService {
         TextEntity textEntity = new TextEntity();
 
         if (text == null || text.getText().isEmpty()) {
-            textEntity.setText("El texto no puede ser vacío.");
-            return textEntity;
+            throw new IllegalArgumentException("El texto no puede estar vacio.");
         }
 
         String finalText = "";
         String codeEncode = "";
         for (Character c : text.getText().toCharArray()){
             String n1 = SimbolToNumber.obtenerNumero(c.toString());
-            if(n1 != null){
-                codeEncode += n1;
-            } else {
-                codeEncode += c.toString();
-            }
+            codeEncode += Objects.requireNonNullElseGet(n1, c::toString);
         }
 
         String numEncode = "";
