@@ -4,7 +4,6 @@ import com.jejo.encode_decode.text.entity.TextEntity;
 import com.jejo.encode_decode.text.maps.*;
 import com.jejo.encode_decode.text.service.TextService;
 import com.jejo.encode_decode.text.utility.Code;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
