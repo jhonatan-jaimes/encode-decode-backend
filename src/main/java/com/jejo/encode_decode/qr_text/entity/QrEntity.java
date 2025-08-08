@@ -4,6 +4,7 @@ package com.jejo.encode_decode.qr_text.entity;
 public class QrEntity {
     String [][] qr;
 
+
     public QrEntity() {
     }
 

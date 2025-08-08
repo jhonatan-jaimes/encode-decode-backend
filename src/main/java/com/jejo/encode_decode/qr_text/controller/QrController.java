@@ -1,8 +1,10 @@
 package com.jejo.encode_decode.qr_text.controller;
 
-import com.jejo.encode_decode.qr_text.entity.QrEntity;
+import com.jejo.encode_decode.qr_text.dto.TextQr;
+import com.jejo.encode_decode.qr_text.implement.QrImplement;
 import com.jejo.encode_decode.qr_text.service.QrServices;
-import com.jejo.encode_decode.text.entity.TextEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,12 +17,17 @@ public class QrController {
 
     private final QrServices qrServices;
 
-    public QrController(QrServices qrServices) {
-        this.qrServices = qrServices;
+    @Autowired
+    public QrController(QrImplement qrImplement) {
+        this.qrServices = qrImplement;
     }
 
     @PostMapping("/get-qr")
-    public ResponseEntity<QrEntity> getQr(@RequestBody TextEntity textEntity){
-        return ResponseEntity.ok(qrServices.qrEntity());
+    public ResponseEntity<?> getQr(@RequestBody TextQr textQr){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(qrServices.qrEntity(textQr));
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no se puede resolver. " + ex);
+        }
     }
 }

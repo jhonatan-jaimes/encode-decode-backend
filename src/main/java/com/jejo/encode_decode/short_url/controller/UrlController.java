@@ -12,7 +12,7 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class UrlController {
 
 

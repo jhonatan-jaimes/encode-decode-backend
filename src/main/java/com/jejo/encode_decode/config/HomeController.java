@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/ok")
+@RequestMapping("/wake")
 public class HomeController {
-    @GetMapping("/wake-up")
+    @GetMapping("/up")
     public ResponseEntity<HttpStatus> wakeUp(){
         return ResponseEntity.ok(HttpStatus.OK);
     }

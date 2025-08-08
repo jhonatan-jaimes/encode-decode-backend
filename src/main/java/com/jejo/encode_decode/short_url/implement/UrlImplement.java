@@ -23,12 +23,15 @@ public class UrlImplement implements UrlService {
         return urlRepository.findByUrlShort(text)
                 .map(UrlEntity::getUrlOrigin)
                 .orElseThrow(() -> new RuntimeException("URL no encontrada: " + text));
+        
     }
 
     @Override
     public TextEntity createUrl(TextEntity text) {
 
-        if(text.getText().isEmpty()){
+        if (text == null) {
+            throw new IllegalArgumentException("El elemento no puede ser nulo");
+        } else if (text.getText().isEmpty()) {
             throw new IllegalArgumentException("El elemento no puede ser vació");
         }
 
