@@ -4,7 +4,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
-import com.jejo.encode_decode.qr_text.dto.TextQr;
+import com.jejo.encode_decode.qr_text.dto.QrTextDto;
 import com.jejo.encode_decode.qr_text.entity.QrEntity;
 import com.jejo.encode_decode.qr_text.service.QrServices;
 
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 public class QrImplement implements QrServices {
 
     @Override
-    public QrEntity qrEntity(TextQr textQr) {
-        String content = textQr.getText();
-        int width = textQr.getWidth();
-        int height = textQr.getHeight();
+    public QrEntity qrEntity(QrTextDto qrTextDto) {
+        String content = qrTextDto.text();
+        int width = qrTextDto.size();
+        int height = qrTextDto.size();
 
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
