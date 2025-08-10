@@ -23,11 +23,20 @@ public class QrController {
         this.qrServices = qrImplement;
     }
 
+    /*
+    * un endpoint cuyo funcionamiento es el crear un código QR tras recibir un texto para la creation de la
+    * imagen QR, se genera validation desde la clase RECORD, para retornar las exceptions.
+    * */
     @PostMapping("/get-qr")
     public ResponseEntity<?> getQr(@Valid @RequestBody QrTextDto dto){
         try{
+
+            // Intenta crear la imagen QR
             return ResponseEntity.status(HttpStatus.OK).body(qrServices.qrEntity(dto));
+
         }catch (Exception ex){
+
+            // Retorna una excception si no se puede realizar la imagen QR.
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no se puede resolver " + ex);
         }
     }

@@ -13,8 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class QrImplement implements QrServices {
 
+    /*
+    * Implemetacion de la capa servicio de la entidad QR, para el uso de la inyeccion de dependencias
+    * del principio SOLID.
+    * */
     @Override
     public QrEntity qrEntity(QrTextDto qrTextDto) {
+
         String content = qrTextDto.text();
         int width = qrTextDto.size();
         int height = qrTextDto.size();
