@@ -23,6 +23,10 @@ public class UrlController {
         this.urlService = urlImplement;
     }
 
+    /*
+    * Este endpoint toma el link y busca en la base de datos el hash y si lo encuentra redirige,
+    * al link original asociado al hash
+    * */
     @GetMapping("/{text}")
     public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String text) {
         try {
@@ -32,24 +36,32 @@ public class UrlController {
                 originalUrl = "https://" + originalUrl;
             }
 
+            // Retorna el recurso encontrado y redirige a la pagina web original.
             return ResponseEntity.status(HttpStatus.FOUND)
                     .location(URI.create(originalUrl))
                     .build();
-
         } catch (Exception ex) {
+
+            // Retorna un bad request en caso de no cumplirse validaciones programadas.
             return ResponseEntity.badRequest()
                     .body("URL no encontrada: " + ex.getMessage());
         }
     }
 
+    /*
+    * El enpoint post "short" resive como parametro un textEntity el cual debe contener el link
+    * original de la pagina web a la que se quiere acortar la url.
+    * */
     @PostMapping("/short")
     public ResponseEntity<?> getShort(@RequestBody TextEntity text){
         try{
             TextEntity textEntity = urlService.createUrl(text);
 
+            // Retorna un status created si tiene exito junto al link recortado.
             return ResponseEntity.status(HttpStatus.CREATED).body(textEntity);
         }catch (Exception ex){
 
+            // Si la peticion no se puede completar retorna un badRequest.
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("No se puede resolver la peticion" + ex.getMessage());
         }
