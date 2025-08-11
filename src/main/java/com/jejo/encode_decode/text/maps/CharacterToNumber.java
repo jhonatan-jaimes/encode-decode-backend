@@ -36,6 +36,10 @@ public class CharacterToNumber {
         characterToNumber.put('z', "36");
     }
 
+    /*
+     * Metodo que recive un parametro desde la implementacion lo busca en la biblioteca y
+     * devuelve el valor.
+     * */
     public static String getNumero(char letra) {
         return characterToNumber.get(letra);
     }

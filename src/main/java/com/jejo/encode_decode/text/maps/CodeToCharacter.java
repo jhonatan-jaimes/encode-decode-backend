@@ -8,6 +8,7 @@ public class CodeToCharacter {
 
     static {
         // Números invertidos
+        codeToCharacter.put("vq", '0');
         codeToCharacter.put("aa", '1');
         codeToCharacter.put("ah", '2');
         codeToCharacter.put("ao", '3');
@@ -92,6 +93,11 @@ public class CodeToCharacter {
         codeToCharacter.put("vm", '_');
         codeToCharacter.put("vt", ' ');
     }
+
+    /*
+     * Metodo que recive un parametro desde la implementacion lo busca en la biblioteca y
+     * devuelve el valor.
+     * */
     public static Character getValue(String key) {
         return codeToCharacter.get(key);
     }

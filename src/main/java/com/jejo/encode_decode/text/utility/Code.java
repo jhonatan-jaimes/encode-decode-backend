@@ -5,6 +5,11 @@ import java.util.Map;
 import java.util.Random;
 
 public class Code {
+
+    /*
+     * Mapa de diferentes tipos de multiplicacion con el cul el código se va a codificar los numeros del
+     * encode, para tener guardado en el hash para luego decodificarlo.
+     * */
     private final Map<Integer, String> codeRandom = new HashMap<>();
 
     public Code() {
@@ -15,6 +20,9 @@ public class Code {
         codeRandom.put(4,"157");
     }
 
+    /*
+    * Metodo que me devuelve l codigo con el que se va a codificar el texto.
+    * */
     public String codeRandom(){
         Random random = new Random();
         int aleatorio = random.nextInt(5);

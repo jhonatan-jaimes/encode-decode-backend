@@ -79,8 +79,13 @@ public class NumberToCharacter {
         numberToCharacter.put("74", "@");
         numberToCharacter.put("75", "^");
         numberToCharacter.put("76", "-");
+
     }
 
+    /*
+    * Metodo que devuelve el resultado del input que se envia desde la implementacion,
+    * devuelve solo su valor.
+    * */
     public static String obtenerCaracter(String codigo) {
         return numberToCharacter.get(codigo);
     }

@@ -8,6 +8,7 @@ public class CharacterToCode {
 
     static {
         // Números a dos letras
+        bibliotecaGeneralL.put('0', "vq");
         bibliotecaGeneralL.put('1', "aa");
         bibliotecaGeneralL.put('2', "ah");
         bibliotecaGeneralL.put('3', "ao");
@@ -93,7 +94,11 @@ public class CharacterToCode {
         bibliotecaGeneralL.put(' ', "vt");
 
     }
-    // para acceder a los valores
+
+    /*
+     * Metodo que recive un parametro desde la implementacion lo busca en la biblioteca y
+     * devuelve el valor.
+     * */
     public static String getValue(char key) {
         return bibliotecaGeneralL.get(key);
     }

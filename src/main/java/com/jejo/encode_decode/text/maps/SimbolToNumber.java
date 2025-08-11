@@ -76,8 +76,13 @@ public class SimbolToNumber {
         simbolToNumber.put("@", "74");
         simbolToNumber.put("^", "75");
         simbolToNumber.put("-", "76");
+
     }
 
+    /*
+    * Metodo que recive un parametro desde la implementacion lo busca en la biblioteca y
+    * devuelve el valor.
+    * */
     public static String obtenerNumero(String codigo) {
         return simbolToNumber.get(codigo);
     }
