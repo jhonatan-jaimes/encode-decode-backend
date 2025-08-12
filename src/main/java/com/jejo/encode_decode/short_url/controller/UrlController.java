@@ -1,5 +1,6 @@
 package com.jejo.encode_decode.short_url.controller;
 
+import com.jejo.encode_decode.short_url.dto.UrlDto;
 import com.jejo.encode_decode.short_url.implement.UrlImplement;
 import com.jejo.encode_decode.short_url.service.UrlService;
 import com.jejo.encode_decode.text.entity.TextEntity;
@@ -53,9 +54,9 @@ public class UrlController {
     * original de la pagina web a la que se quiere acortar la url.
     * */
     @PostMapping("/short")
-    public ResponseEntity<?> getShort(@RequestBody TextEntity text){
+    public ResponseEntity<?> getShort(@RequestBody UrlDto urlDto){
         try{
-            TextEntity textEntity = urlService.createUrl(text);
+            TextEntity textEntity = urlService.createUrl(urlDto);
 
             // Retorna un status created si tiene exito junto al link recortado.
             return ResponseEntity.status(HttpStatus.CREATED).body(textEntity);

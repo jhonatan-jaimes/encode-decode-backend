@@ -1,5 +1,6 @@
 package com.jejo.encode_decode.short_url.implement;
 
+import com.jejo.encode_decode.short_url.dto.UrlDto;
 import com.jejo.encode_decode.short_url.entity.UrlEntity;
 import com.jejo.encode_decode.short_url.repository.UrlRepository;
 import com.jejo.encode_decode.short_url.service.UrlService;
@@ -37,17 +38,17 @@ public class UrlImplement implements UrlService {
     * para su uso posterior en el link.
     * */
     @Override
-    public TextEntity createUrl(TextEntity text) {
+    public TextEntity createUrl(UrlDto text) {
 
         if (text == null) {
             throw new IllegalArgumentException("El elemento no puede ser nulo");
-        } else if (text.getText().isEmpty()) {
+        } else if (text.text().isEmpty() || text.link().isEmpty()) {
             throw new IllegalArgumentException("El elemento no puede ser vació");
         }
 
         UrlEntity urlEntity = new UrlEntity();
 
-        String urlOrigin = text.getText();
+        String urlOrigin = text.text();
         String hashUrl = "";
 
         /*
@@ -62,9 +63,8 @@ public class UrlImplement implements UrlService {
         urlEntity.setUrlOrigin(urlOrigin);
         urlEntity.setUrlShort(hashUrl);
         urlRepository.save(urlEntity); // --> se guarda en la base de datos el hash y la url original
-        String host = "http://localhost:8080/" + hashUrl; // --> link corto para la url
-        text.setText(host);
+        String host = text.link() + hashUrl; // --> link corto para la url
 
-        return text; // --> se retorna el short-url
+        return new TextEntity(host); // --> se retorna el short-url
     }
 }
