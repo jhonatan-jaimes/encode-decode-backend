@@ -4,6 +4,7 @@ import com.jejo.encode_decode.short_url.dto.UrlDto;
 import com.jejo.encode_decode.short_url.implement.UrlImplement;
 import com.jejo.encode_decode.short_url.service.UrlService;
 import com.jejo.encode_decode.text.entity.TextEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,7 @@ public class UrlController {
     * original de la pagina web a la que se quiere acortar la url.
     * */
     @PostMapping("/short")
-    public ResponseEntity<?> getShort(@RequestBody UrlDto urlDto){
+    public ResponseEntity<?> getShort(@Valid @RequestBody UrlDto urlDto){
         try{
             TextEntity textEntity = urlService.createUrl(urlDto);
 
