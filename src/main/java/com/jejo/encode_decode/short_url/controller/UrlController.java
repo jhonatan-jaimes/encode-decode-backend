@@ -51,8 +51,8 @@ public class UrlController {
     }
 
     /*
-    * El enpoint post "short" resive como parametro un textEntity el cual debe contener el link
-    * original de la pagina web a la que se quiere acortar la url.
+    * El endpoint post "short" resive como parametro un textEntity el cual debe contener el link
+    * original de la página web a la que se quiere acortar la url.
     * */
     @PostMapping("/short")
     public ResponseEntity<?> getShort(@Valid @RequestBody UrlDto urlDto){
