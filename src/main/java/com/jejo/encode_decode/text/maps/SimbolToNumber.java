@@ -84,6 +84,6 @@ public class SimbolToNumber {
     * devuelve el valor.
     * */
     public static String obtenerNumero(String codigo) {
-        return simbolToNumber.get(codigo);
+        return simbolToNumber.getOrDefault(codigo, codigo);
     }
 }

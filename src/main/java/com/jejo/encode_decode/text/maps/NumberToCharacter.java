@@ -86,8 +86,11 @@ public class NumberToCharacter {
     * Metodo que devuelve el resultado del input que se envia desde la implementacion,
     * devuelve solo su valor.
     * */
-    public static String obtenerCaracter(String codigo) {
-        return numberToCharacter.get(codigo);
+    public static String numberToNumber (String obj, int code){
+        return String.valueOf(Integer.parseInt(obj) * code);
+    }
+    public static String obtenerCharacter(String codigo) {
+        return numberToCharacter.getOrDefault(codigo, codigo);
     }
 }
 
