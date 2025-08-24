@@ -14,9 +14,11 @@ public class EncodeDecodeApplication {
 		* y se encarga de mapear.
 		* */
 		Dotenv dotenv = Dotenv.load();
-		System.setProperty("DB_URL", dotenv.get("DB_URL"));
-		System.setProperty("DB_USER", dotenv.get("DB_USER"));
-		System.setProperty("DB_PASS", dotenv.get("DB_PASS"));
+		System.setProperty("MYSQL_ADDON_URI", dotenv.get("MYSQL_ADDON_URI"));
+		System.setProperty("MYSQL_ADDON_USER", dotenv.get("MYSQL_ADDON_USER"));
+		System.setProperty("MYSQL_ADDON_PASS", dotenv.get("MYSQL_ADDON_PASS"));
+
+        System.setProperty("CORS_ALLOWED_ORIGINS", dotenv.get("CORS_ALLOWED_ORIGINS"));
 
 		SpringApplication.run(EncodeDecodeApplication.class, args);
 	}

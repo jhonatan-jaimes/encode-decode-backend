@@ -17,7 +17,7 @@ public class TextController {
         this.textService = textService;
     }
 
-    //Si el intento es correcto devuelve 'TextEntity', pero si falla devuelve una exeption por eso <?>
+    //Si el intento es correcto devuelve 'TextEntity', pero si falla devuelve una exception por eso <?>
     @PostMapping("/encode")
     public ResponseEntity<?> encodeText(@RequestBody TextEntity encodeEntity){
         try {
