@@ -29,15 +29,8 @@ public class QrController {
     * */
     @PostMapping("/get-qr")
     public ResponseEntity<?> getQr(@Valid @RequestBody QrTextDto dto){
-        try{
 
-            // Intenta crear la imagen QR
-            return ResponseEntity.status(HttpStatus.OK).body(qrServices.qrEntity(dto));
-
-        }catch (Exception ex){
-
-            // Retorna una excception si no se puede realizar la imagen QR.
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no se puede resolver " + ex);
-        }
+        // Intenta crear la imagen QR
+        return ResponseEntity.status(HttpStatus.OK).body(qrServices.qrEntity(dto));
     }
 }

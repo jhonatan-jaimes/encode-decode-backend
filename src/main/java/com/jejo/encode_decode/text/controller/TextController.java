@@ -20,22 +20,14 @@ public class TextController {
     //Si el intento es correcto devuelve 'TextEntity', pero si falla devuelve una exception por eso <?>
     @PostMapping("/encode")
     public ResponseEntity<?> encodeText(@RequestBody TextEntity encodeEntity){
-        try {
-            return ResponseEntity.ok(textService.encodeEntity(encodeEntity));
-        } catch (IllegalArgumentException ex){
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
 
+        return ResponseEntity.ok(textService.encodeEntity(encodeEntity));
     }
 
     //Si el intento es correcto devuelve 'TextEntity', pero si falla devuelve una exeption por eso <?>
     @PostMapping("/decode")
     public ResponseEntity<?> decodeText(@RequestBody TextEntity decodeEntity){
-        try {
-            return ResponseEntity.ok(textService.decodeEntity(decodeEntity));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.badRequest().body(ex.getMessage());
-        }
 
+        return ResponseEntity.ok(textService.decodeEntity(decodeEntity));
     }
 }

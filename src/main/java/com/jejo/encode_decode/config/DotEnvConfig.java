@@ -2,7 +2,7 @@ package com.jejo.encode_decode.config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
-public class DotEnv {
+public class DotEnvConfig {
     public static void dotenv(){
         Dotenv dotenv = Dotenv.load();
         System.setProperty("MYSQL_URI", dotenv.get("MYSQL_URI"));
