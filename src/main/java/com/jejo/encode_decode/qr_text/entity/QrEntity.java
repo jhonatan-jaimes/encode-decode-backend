@@ -5,20 +5,20 @@ package com.jejo.encode_decode.qr_text.entity;
 * cliente para asi facilitar la transmission de datos.
 * */
 public class QrEntity {
-    String [][] qr;
+    String qr;
 
     public QrEntity() {
     }
 
-    public QrEntity(String[][] qr) {
+    public QrEntity(String qr) {
         this.qr = qr;
     }
 
-    public String[][] getQr() {
+    public String getQr() {
         return qr;
     }
 
-    public void setQr(String[][] qr) {
+    public void setQr(String qr) {
         this.qr = qr;
     }
 }
