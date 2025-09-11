@@ -9,5 +9,10 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 COPY --from=build /app/target/*SNAPSHOT.jar app.jar
+
+# Cloud Run se encarga de exponer el puerto,
+# EXPOSE es opcional pero lo dejamos por claridad
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Usamos la variable de entorno PORT
+ENTRYPOINT ["java","-jar","app.jar"]
