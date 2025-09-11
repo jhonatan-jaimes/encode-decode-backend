@@ -6,24 +6,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Arrays;
+
 @Configuration
 public class WebConfigCors {
 
     @Value("${cors.allowed-origins}")
     private String[] allowedOrigins;
-    /*
-    * Manejo de la configuration del servidor para otorgar permisos a determinadas cuáles páginas
-    * pueden consumir estos servicios.
-    * */
+
+
     @Bean
     public WebMvcConfigurer webMvcConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(allowedOrigins)  // <-- array de links permitidos consumir la api
+                        .allowedOrigins(allowedOrigins)
                         .allowedHeaders("*")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowCredentials(true)
                         .maxAge(3600);
             }
         };
