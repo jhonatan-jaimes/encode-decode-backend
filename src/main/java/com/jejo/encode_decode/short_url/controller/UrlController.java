@@ -21,8 +21,8 @@ public class UrlController {
     private final UrlService urlService;
 
     @Autowired
-    public UrlController(UrlImplement urlImplement) {
-        this.urlService = urlImplement;
+    public UrlController(UrlService urlService) {
+        this.urlService = urlService;
     }
 
     /*

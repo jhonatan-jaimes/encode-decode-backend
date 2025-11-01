@@ -59,7 +59,7 @@ public class UrlImplement implements UrlService {
             hashUrl = UrlUtilidad.hash();
         }while (urlRepository.existsByUrlShort(hashUrl));
 
-        // Guarda los elementos en la  entidad urls para almacenar en la base de datos
+        // Guarda los elementos en la entidad urls para almacenar en la base de datos
         urlEntity.setUrlOrigin(urlOrigin);
         urlEntity.setUrlShort(hashUrl);
         urlRepository.save(urlEntity); // --> se guarda en la base de datos el hash y la url original

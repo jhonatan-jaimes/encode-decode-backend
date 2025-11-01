@@ -1,6 +1,7 @@
 package com.jejo.encode_decode.qr_text.controller;
 
 import com.jejo.encode_decode.qr_text.dto.QrTextDto;
+import com.jejo.encode_decode.qr_text.entity.QrEntity;
 import com.jejo.encode_decode.qr_text.implement.QrImplement;
 import com.jejo.encode_decode.qr_text.service.QrServices;
 import jakarta.validation.Valid;
@@ -19,8 +20,8 @@ public class QrController {
     private final QrServices qrServices;
 
     @Autowired
-    public QrController(QrImplement qrImplement) {
-        this.qrServices = qrImplement;
+    public QrController(QrServices qrServices) {
+        this.qrServices = qrServices;
     }
 
     /*
@@ -28,9 +29,9 @@ public class QrController {
     * imagen QR, se genera validation desde la clase RECORD, para retornar las exceptions.
     * */
     @PostMapping("/get-qr")
-    public ResponseEntity<?> getQr(@Valid @RequestBody QrTextDto dto){
+    public ResponseEntity<QrEntity> getQr(@Valid @RequestBody QrTextDto dto){
 
         // Intenta crear la imagen QR
-        return ResponseEntity.status(HttpStatus.OK).body(qrServices.qrEntity(dto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(qrServices.qrEntity(dto));
     }
 }

@@ -95,9 +95,11 @@ public class CharacterToCode {
 
     }
 
-    /*
+    /**
      * Metodo que recive un parametro desde la implementacion lo busca en la biblioteca y
      * devuelve el valor.
+     * @param key, resive una letra y devuelve el valor que se encuentra en la biblioteca
+     * @throws IllegalArgumentException devuelve el throw si la key no se encuentra
      * */
     public static String getValue(String key) {
         if(bibliotecaGeneralL.containsKey(key)){
