@@ -5,14 +5,18 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Etapa 2: Runtime
-FROM eclipse-temurin:17-jdk-jammy
+# Etapa 2: Runtime - CAMBIA a JRE (más liviano)
+FROM eclipse-temurin:17-jre-jammy
+
 WORKDIR /app
 COPY --from=build /app/target/*SNAPSHOT.jar app.jar
 
-# Cloud Run se encarga de exponer el puerto,
-# EXPOSE es opcional pero lo dejamos por claridad
+# Variables de entorno PARA CLOUD RUN
+ENV PORT=8080
+ENV JAVA_OPTS="-Xmx256m -Xms128m"
+
+# Exponer el puerto (sí es necesario para Cloud Run)
 EXPOSE 8080
 
-# Usamos la variable de entorno PORT
-ENTRYPOINT ["java","-jar","app.jar"]
+# Comando CORREGIDO para usar la variable PORT
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Dserver.port=${PORT} -jar app.jar"]
