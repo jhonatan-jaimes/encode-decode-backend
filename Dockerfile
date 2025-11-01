@@ -1,27 +1,21 @@
-# Etapa 1: Compilar el proyecto
-FROM maven:3.9.9-eclipse-temurin-17 AS build
+# Etapa 1: Build con Maven
+FROM maven:3.9.8-eclipse-temurin-17 AS builder
 WORKDIR /app
 
-# Copiar dependencias primero (mejor uso del caché)
 COPY pom.xml .
-RUN mvn dependency:go-offline -B
+RUN mvn dependency:go-offline
 
-# Copiar código fuente y compilar
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Etapa 2: Imagen ligera para ejecución
-FROM eclipse-temurin:17-jdk-alpine
-
-# Cloud Run asigna el puerto mediante variable PORT
-ENV PORT=8080
+# Etapa 2: Imagen final
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
-# Copiar el .jar generado
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 
-# Exponer el puerto (solo informativo)
+# Cloud Run asigna el puerto dinámicamente, pero se comunica por 8080
+ENV PORT=8080
 EXPOSE 8080
 
-# Comando de inicio
-CMD ["sh", "-c", "java -jar app.jar --server.port=${PORT}"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
