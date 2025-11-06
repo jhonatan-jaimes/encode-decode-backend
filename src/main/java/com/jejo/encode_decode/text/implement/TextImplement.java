@@ -1,5 +1,6 @@
 package com.jejo.encode_decode.text.implement;
 
+import com.jejo.encode_decode.text.dto.TextDto;
 import com.jejo.encode_decode.text.entity.TextEntity;
 import com.jejo.encode_decode.text.maps.*;
 import com.jejo.encode_decode.text.service.TextService;
@@ -18,15 +19,15 @@ public class TextImplement implements TextService {
     private final Code code = new Code();
 
     @Override
-    public TextEntity encodeEntity(TextEntity text) {
+    public TextEntity encodeEntity(TextDto text) {
         TextEntity textEntity = new TextEntity();
 
-        if (text == null || text.getText().isEmpty()) {
+        if (text == null || text.text().isEmpty()) {
             throw new IllegalArgumentException("El texto no puede estar vacio.");
         }
 
         int randomCode = code.codeRandom();
-        String combined = randomCode + text.getText();
+        String combined = randomCode + text.text();
 
         final String encode = Arrays.stream(combined.split(""))
                 .map(CharacterToCode::getValue)
@@ -42,17 +43,17 @@ public class TextImplement implements TextService {
     }
 
     @Override
-    public TextEntity decodeEntity(TextEntity text) {
+    public TextEntity decodeEntity(TextDto text) {
         TextEntity textEntity = new TextEntity();
 
-        if (text == null || text.getText().isEmpty()) {
+        if (text == null || text.text().isEmpty()) {
             throw new IllegalArgumentException("El texto no puede estar vacio.");
         }
 
         String finalText = "";
         String codeEncode = "";
 
-        for (Character c : text.getText().toCharArray()){
+        for (Character c : text.text().toCharArray()){
             String n1 = SimbolToNumber.obtenerNumero(c.toString());
             if (n1 == null){
                 throw new IllegalArgumentException("Letra no utilizada, " + c + " no existe");
