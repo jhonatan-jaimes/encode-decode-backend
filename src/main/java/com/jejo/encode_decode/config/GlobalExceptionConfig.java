@@ -49,11 +49,13 @@ public class GlobalExceptionConfig {
     }
 
     // Captura ANY otra excepción
+    /*
     @ExceptionHandler(Exception.class)
     public ResponseEntity<MensajeResponse> handleGenericException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new MensajeResponse("Error inesperado: " + ex.getMessage()));
     }
+    */
 
     private String convertMapToJson(Map<String, String> map) {
         try {
