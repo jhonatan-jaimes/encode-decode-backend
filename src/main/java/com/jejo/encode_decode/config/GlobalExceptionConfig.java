@@ -16,36 +16,35 @@ import java.util.Map;
 public class GlobalExceptionConfig {
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<MensajeResponse> handleEndpoint(NoHandlerFoundException ex){
+    public ResponseEntity<ErrorResponse> handleEndpoint(NoHandlerFoundException ex){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new MensajeResponse("Enpoint no encontrado: " + ex.getRequestURL()
-                        + "\nDetalles:" + ex.getMessage()));
+                new ErrorResponse("Enpoint no encontrado: " + ex.getMessage()));
     }
 
     // Captura ONLY @Valid exceptions
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<MensajeResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.put(error.getField(), error.getDefaultMessage())
         );
 
         String jsonErrors = convertMapToJson(errors);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MensajeResponse(jsonErrors));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(jsonErrors));
     }
 
     // Captura IllegalArgumentException (throws manuales)
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<MensajeResponse> handleIllegalArgument(IllegalArgumentException ex) {
+    public ResponseEntity<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new MensajeResponse("Error: " + ex.getMessage()));
+                .body(new ErrorResponse("Error: " + ex.getMessage()));
     }
 
     // Captura RuntimeException (throws manuales)
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<MensajeResponse> handleRuntimeException(RuntimeException ex) {
+    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new MensajeResponse("Error interno: " + ex.getMessage()));
+                .body(new ErrorResponse("Error interno: " + ex.getMessage()));
     }
 
     // Captura ANY otra excepción
