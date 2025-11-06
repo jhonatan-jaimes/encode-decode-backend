@@ -76,7 +76,7 @@ public class TextImplement implements TextService {
             int block = Math.min(j + blockSize, numEncode.length());
             String sub = numEncode.substring(j, block);
             if(CodeToCharacter.getValue(sub) == null){
-                throw new IllegalArgumentException("No se puede decodificar el texto, " +
+                throw new RuntimeException("No se puede decodificar el texto, " +
                         "no es codificado con este sistema.");
             }
             finalText += CodeToCharacter.getValue(sub);

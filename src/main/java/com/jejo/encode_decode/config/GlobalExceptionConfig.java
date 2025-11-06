@@ -37,14 +37,14 @@ public class GlobalExceptionConfig {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse("Error: " + ex.getMessage()));
+                .body(new ErrorResponse(ex.getMessage()));
     }
 
     // Captura RuntimeException (throws manuales)
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse("Error interno: " + ex.getMessage()));
+                .body(new ErrorResponse(ex.getMessage()));
     }
 
     // Captura ANY otra excepción
