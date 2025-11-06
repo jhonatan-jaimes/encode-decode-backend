@@ -1,7 +1,6 @@
 package com.jejo.encode_decode.short_url.controller;
 
 import com.jejo.encode_decode.short_url.dto.UrlDto;
-import com.jejo.encode_decode.short_url.implement.UrlImplement;
 import com.jejo.encode_decode.short_url.service.UrlService;
 import com.jejo.encode_decode.text.entity.TextEntity;
 import jakarta.validation.Valid;

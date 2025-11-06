@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,37 +15,44 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionConfig {
 
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<MensajeResponse> handleEndpoint(NoHandlerFoundException ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new MensajeResponse("Enpoint no encontrado: " + ex.getRequestURL()
+                        + "\nDetalles:" + ex.getMessage()));
+    }
+
     // Captura ONLY @Valid exceptions
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ResponseEntityConfig> handleValidationErrors(MethodArgumentNotValidException ex) {
+    public ResponseEntity<MensajeResponse> handleValidationErrors(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.put(error.getField(), error.getDefaultMessage())
         );
 
         String jsonErrors = convertMapToJson(errors);
-        return ResponseEntity.badRequest().body(new ResponseEntityConfig(jsonErrors));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MensajeResponse(jsonErrors));
     }
 
     // Captura IllegalArgumentException (throws manuales)
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ResponseEntityConfig> handleIllegalArgument(IllegalArgumentException ex) {
-        return ResponseEntity.badRequest()
-                .body(new ResponseEntityConfig("Error: " + ex.getMessage()));
+    public ResponseEntity<MensajeResponse> handleIllegalArgument(IllegalArgumentException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new MensajeResponse("Error: " + ex.getMessage()));
     }
 
     // Captura RuntimeException (throws manuales)
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ResponseEntityConfig> handleRuntimeException(RuntimeException ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ResponseEntityConfig("Error interno: " + ex.getMessage()));
+    public ResponseEntity<MensajeResponse> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new MensajeResponse("Error interno: " + ex.getMessage()));
     }
 
     // Captura ANY otra excepción
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseEntityConfig> handleGenericException(Exception ex) {
+    public ResponseEntity<MensajeResponse> handleGenericException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ResponseEntityConfig("Error inesperado: " + ex.getMessage()));
+                .body(new MensajeResponse("Error inesperado: " + ex.getMessage()));
     }
 
     private String convertMapToJson(Map<String, String> map) {
