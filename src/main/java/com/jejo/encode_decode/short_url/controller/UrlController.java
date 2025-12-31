@@ -30,23 +30,16 @@ public class UrlController {
     * */
     @GetMapping("/{text}")
     public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String text) {
-        try {
-            String originalUrl = urlService.getUrlOrigin(text);
 
-            if (!originalUrl.startsWith("http://") && !originalUrl.startsWith("https://")) {
-                originalUrl = "https://" + originalUrl;
-            }
+        String originalUrl = urlService.getUrlOrigin(text);
 
-            // Retorna el recurso encontrado y redirige a la pagina web original.
-            return ResponseEntity.status(HttpStatus.FOUND)
-                    .location(URI.create(originalUrl))
-                    .build();
-        } catch (Exception ex) {
-
-            // Retorna un bad request en caso de no cumplirse validaciones programadas.
-            return ResponseEntity.badRequest()
-                    .body("URL no encontrada: " + ex.getMessage());
+        if (!originalUrl.startsWith("http://")) {
+            originalUrl = "https://" + originalUrl;
         }
+        // Retorna el recurso encontrado y redirige a la pagina web original.
+        return ResponseEntity.status(HttpStatus.FOUND)
+            .location(URI.create(originalUrl))
+            .build();
     }
 
     /*
@@ -64,7 +57,7 @@ public class UrlController {
 
             // Si la peticion no se puede completar retorna un badRequest.
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("No se puede resolver la peticion" + ex.getMessage());
+                .body("No se puede resolver la peticion" + ex.getMessage());
         }
     }
 

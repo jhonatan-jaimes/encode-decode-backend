@@ -25,12 +25,10 @@ public class UrlImplement implements UrlService {
     * */
     @Override
     public String getUrlOrigin(String text) {
-        return urlRepository.findByUrlShort(text)
-                .map(UrlEntity::getUrlOrigin)
-
-                // Se devuelve un throw si no se encuentra el hash en la base de datos
-                .orElseThrow(() -> new IllegalArgumentException("URL no encontrada: " + text));
-        
+        return urlRepository.findByHashShort(text)
+            .map(UrlEntity::getUrlOrigin)
+            // Se devuelve un throw si no se encuentra el hash en la base de datos
+            .orElseThrow(() -> new IllegalArgumentException("URL no encontrada: " + text));
     }
 
     /*
@@ -42,8 +40,14 @@ public class UrlImplement implements UrlService {
 
         if (text == null) {
             throw new IllegalArgumentException("El elemento no puede ser nulo");
-        } else if (text.text().isEmpty() || text.link().isEmpty()) {
-            throw new IllegalArgumentException("El elemento no puede ser vació");
+        }
+
+        if (text.text().trim().isEmpty() || text.link().trim().isEmpty()) {
+            throw new IllegalArgumentException("El elemento no puede ser vacío");
+        }
+
+        if (!text.link().matches("^(https?://|www\\.).*$")) {
+            throw new IllegalArgumentException("No es un link para acortar");
         }
 
         String urlOrigin = text.text();
@@ -55,7 +59,7 @@ public class UrlImplement implements UrlService {
         * */
         do{
             hashShort = UrlUtilidad.hash();
-        }while (urlRepository.existsByUrlShort(hashShort));
+        }while (urlRepository.existsByHashShort(hashShort));
 
         // Guarda los elementos en la entidad urls para almacenar en la base de datos
         UrlEntity urlEntity = new UrlEntity(null, hashShort, urlOrigin);

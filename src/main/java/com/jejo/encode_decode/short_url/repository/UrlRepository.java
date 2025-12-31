@@ -10,8 +10,8 @@ import java.util.Optional;
 public interface UrlRepository extends JpaRepository<UrlEntity, Long> {
 
     // Creacion de busqueda de un hash en la base de datos.
-    Optional<UrlEntity> findByUrlShort(String urlShort);
+    Optional<UrlEntity> findByHashShort(String urlShort);
 
     // Metodo para ver si el hash ya existe en la base de datos.
-    boolean existsByUrlShort(String urlShort);
+    boolean existsByHashShort(String urlShort);
 }
