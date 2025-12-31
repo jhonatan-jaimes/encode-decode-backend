@@ -33,9 +33,10 @@ public class UrlController {
 
         String originalUrl = urlService.getUrlOrigin(text);
 
-        if (!originalUrl.startsWith("http://")) {
-            originalUrl = "https://" + originalUrl;
+        if (originalUrl == null || originalUrl.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    
         // Retorna el recurso encontrado y redirige a la pagina web original.
         return ResponseEntity.status(HttpStatus.FOUND)
             .location(URI.create(originalUrl))

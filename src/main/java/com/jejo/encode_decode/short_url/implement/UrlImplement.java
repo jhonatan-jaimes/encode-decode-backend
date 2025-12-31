@@ -25,10 +25,15 @@ public class UrlImplement implements UrlService {
     * */
     @Override
     public String getUrlOrigin(String text) {
-        return urlRepository.findByHashShort(text)
+
+        String urlOrigin = urlRepository.findByHashShort(text)
             .map(UrlEntity::getUrlOrigin)
             // Se devuelve un throw si no se encuentra el hash en la base de datos
             .orElseThrow(() -> new IllegalArgumentException("URL no encontrada: " + text));
+
+        String urlSure = ensureUrlProtocol(urlOrigin);
+
+        return urlSure;
     }
 
     /*
@@ -68,5 +73,23 @@ public class UrlImplement implements UrlService {
         String host = text.link() + hashShort; // --> link corto para la url
 
         return new TextEntity(host); // --> se retorna el short-url
+    }
+
+    private String ensureUrlProtocol(String url) {
+        // Limpiar espacios
+        url = url.trim();
+        
+        // Si ya tiene protocolo, devolverla tal cual
+        if (url.startsWith("http://") || url.startsWith("https://")) {
+            return url;
+        }
+        
+        // Si empieza con www., añadir https://
+        if (url.startsWith("www.")) {
+            return "https://" + url;
+        }
+        
+        // Para otros casos, asumir que es un dominio y añadir https://
+        return "https://" + url;
     }
 }
