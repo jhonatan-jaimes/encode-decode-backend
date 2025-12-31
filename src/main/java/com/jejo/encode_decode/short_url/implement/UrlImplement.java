@@ -46,24 +46,22 @@ public class UrlImplement implements UrlService {
             throw new IllegalArgumentException("El elemento no puede ser vació");
         }
 
-        UrlEntity urlEntity = new UrlEntity();
-
         String urlOrigin = text.text();
-        String hashUrl = "";
+        String hashShort = "";
 
         /*
         * Si el hash ya se encuentra en la base de datos el do while se repetira para que los
         * hash no se repitan
         * */
         do{
-            hashUrl = UrlUtilidad.hash();
-        }while (urlRepository.existsByUrlShort(hashUrl));
+            hashShort = UrlUtilidad.hash();
+        }while (urlRepository.existsByUrlShort(hashShort));
 
         // Guarda los elementos en la entidad urls para almacenar en la base de datos
-        urlEntity.setUrlOrigin(urlOrigin);
-        urlEntity.setUrlShort(hashUrl);
+        UrlEntity urlEntity = new UrlEntity(null, hashShort, urlOrigin);
+        
         urlRepository.save(urlEntity); // --> se guarda en la base de datos el hash y la url original
-        String host = text.link() + hashUrl; // --> link corto para la url
+        String host = text.link() + hashShort; // --> link corto para la url
 
         return new TextEntity(host); // --> se retorna el short-url
     }

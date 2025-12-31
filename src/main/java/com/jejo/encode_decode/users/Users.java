@@ -1,6 +1,5 @@
 package com.jejo.encode_decode.users;
 
-import com.jejo.encode_decode.short_url.entity.UrlEntity;
 import jakarta.persistence.*;
 
 @Entity

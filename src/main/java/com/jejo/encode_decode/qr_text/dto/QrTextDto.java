@@ -13,5 +13,6 @@ public record QrTextDto(
         @NotNull(message = "Se necesita que no sea nulo")
         @Positive(message = "No puede ser negativo la escala")
         @Max(value = 500, message = "Maximo 500 px")
+        @Min(value = 250, message = "Minimo 250 px")
         Integer size
 ) { }

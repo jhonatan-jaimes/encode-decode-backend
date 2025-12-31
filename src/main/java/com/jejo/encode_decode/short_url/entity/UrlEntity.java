@@ -11,15 +11,15 @@ public class UrlEntity {
     private Long id;
 
     @Basic
-    private String urlShort;
+    private String hashShort;
     private String urlOrigin;
 
     public UrlEntity() {
     }
 
-    public UrlEntity(Long id, String urlShort, String urlOrigin) {
+    public UrlEntity(Long id, String hashShort, String urlOrigin) {
         this.id = id;
-        this.urlShort = urlShort;
+        this.hashShort = hashShort;
         this.urlOrigin = urlOrigin;
     }
 
@@ -31,12 +31,12 @@ public class UrlEntity {
         this.id = id;
     }
 
-    public String getUrlShort() {
-        return urlShort;
+    public String getHashShort() {
+        return hashShort;
     }
 
-    public void setUrlShort(String urlShort) {
-        this.urlShort = urlShort;
+    public void setHashShort(String hashShort) {
+        this.hashShort = hashShort;
     }
 
     public String getUrlOrigin() {
@@ -46,4 +46,6 @@ public class UrlEntity {
     public void setUrlOrigin(String urlOrigin) {
         this.urlOrigin = urlOrigin;
     }
+
+    
 }
