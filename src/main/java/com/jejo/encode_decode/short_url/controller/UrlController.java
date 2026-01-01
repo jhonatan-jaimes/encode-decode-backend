@@ -48,18 +48,11 @@ public class UrlController {
     * original de la página web a la que se quiere acortar la url.
     * */
     @PostMapping("/short")
-    public ResponseEntity<?> getShort(@Valid @RequestBody UrlDto urlDto){
-        try{
-            TextEntity textEntity = urlService.createUrl(urlDto);
+    public ResponseEntity<TextEntity> getShort(@Valid @RequestBody UrlDto urlDto){
+        TextEntity textEntity = urlService.createUrl(urlDto);
 
-            // Retorna un status created si tiene exito junto al link recortado.
-            return ResponseEntity.status(HttpStatus.CREATED).body(textEntity);
-        }catch (Exception ex){
-
-            // Si la peticion no se puede completar retorna un badRequest.
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("No se puede resolver la peticion" + ex.getMessage());
-        }
+        // Retorna un status created si tiene exito junto al link recortado.
+        return ResponseEntity.status(HttpStatus.CREATED).body(textEntity);
     }
 
 }
