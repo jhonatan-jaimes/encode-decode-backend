@@ -1,7 +1,6 @@
 package com.jejo.encode_decode.users.implement;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jejo.encode_decode.users.customer.Customer;
@@ -12,8 +11,8 @@ import com.jejo.encode_decode.users.dto.UserDto;
 import com.jejo.encode_decode.users.repository.CustomerRepository;
 import com.jejo.encode_decode.users.repository.UsersRepository;
 import com.jejo.encode_decode.users.service.CustomerService;
-
-@Service
+/*
+* @Service
 public class CustomerImplement implements CustomerService {
 
   private final CustomerRepository customerRepository;
@@ -30,12 +29,13 @@ public class CustomerImplement implements CustomerService {
   @Override
   public CustomerDto createdCustomer(CreatedCustomerDto ccdto) {
     String password = passwordEncoder.encode(ccdto.password());
-    Customer customer = new Customer(null, ccdto.name(), ccdto.lastname(), ccdto.email(), 
+    Customer customer = new Customer(null, ccdto.name(), ccdto.lastname(), ccdto.email(),
       new Users(null, ccdto.username(), password, null));
 
       customer.getUser().setCustomer(customer);
+
       customerRepository.save(customer);
-      
+
     return new CustomerDto(customer.getName(), customer.getLastname(), customer.getEmail());
   }
 
@@ -47,3 +47,5 @@ public class CustomerImplement implements CustomerService {
     return passwordEncoder.matches(udto.password(), user.getPassword());
   }
 }
+* */
+

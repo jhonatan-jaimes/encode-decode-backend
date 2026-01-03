@@ -11,11 +11,11 @@ import com.jejo.encode_decode.users.dto.CreatedCustomerDto;
 import com.jejo.encode_decode.users.dto.CustomerDto;
 import com.jejo.encode_decode.users.dto.UserDto;
 import com.jejo.encode_decode.users.service.CustomerService;
-
-@RestController
-@RequestMapping("/user")
+/*
+* @RestController
+@RequestMapping("/auth")
 public class CustomerController {
-  
+
   private final CustomerService customerService;
 
   @Autowired
@@ -29,7 +29,10 @@ public class CustomerController {
   }
 
   @PostMapping("/valid")
-  ResponseEntity<?> validUser(UserDto userDto){
+  ResponseEntity<Boolean> validUser(UserDto userDto){
     return ResponseEntity.status(HttpStatus.OK).body(customerService.validUser(userDto));
   }
 }
+* */
+
+

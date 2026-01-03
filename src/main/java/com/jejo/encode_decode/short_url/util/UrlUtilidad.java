@@ -27,6 +27,7 @@ public class UrlUtilidad {
         for (int i = 0; i < 8; i++) {
             code.append(codeUrl.get(random.nextInt(62)));
         }
+
         return code.toString();
     }
 }
