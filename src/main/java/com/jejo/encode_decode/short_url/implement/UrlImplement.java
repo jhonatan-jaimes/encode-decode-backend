@@ -9,6 +9,9 @@ import com.jejo.encode_decode.utility.HashUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 @Service
 public class UrlImplement implements UrlService {
 
@@ -49,7 +52,7 @@ public class UrlImplement implements UrlService {
             throw new IllegalArgumentException("El elemento no puede ser vacío");
         }
 
-        if (!text.link().matches("^(https?://|www\\.).*$")) {
+        if (!isUrl(text.link())) {
             throw new IllegalArgumentException("No es un link para acortar");
         }
 
@@ -89,5 +92,14 @@ public class UrlImplement implements UrlService {
         
         // Para otros casos, asumir que es un dominio y añadir https://
         return "https://" + url;
+    }
+
+    private boolean isUrl(String url){
+        try {
+            new URL(url);
+            return true;
+        } catch (MalformedURLException e){
+            return false;
+        }
     }
 }
