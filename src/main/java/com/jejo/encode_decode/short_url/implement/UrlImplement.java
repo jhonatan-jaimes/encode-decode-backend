@@ -52,7 +52,7 @@ public class UrlImplement implements UrlService {
             throw new IllegalArgumentException("El elemento no puede ser vacío");
         }
 
-        if (!isUrl(text.link())) {
+        if (!isUrl(text.text())) {
             throw new IllegalArgumentException("No es un link para acortar");
         }
 
