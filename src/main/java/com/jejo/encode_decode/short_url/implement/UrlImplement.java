@@ -4,8 +4,8 @@ import com.jejo.encode_decode.short_url.dto.UrlDto;
 import com.jejo.encode_decode.short_url.entity.UrlEntity;
 import com.jejo.encode_decode.short_url.repository.UrlRepository;
 import com.jejo.encode_decode.short_url.service.UrlService;
-import com.jejo.encode_decode.short_url.util.UrlUtilidad;
 import com.jejo.encode_decode.text.entity.TextEntity;
+import com.jejo.encode_decode.utility.HashUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +31,7 @@ public class UrlImplement implements UrlService {
             // Se devuelve un throw si no se encuentra el hash en la base de datos
             .orElseThrow(() -> new IllegalArgumentException("URL no encontrada: " + text));
 
-        String urlSure = ensureUrlProtocol(urlOrigin);
-
-        return urlSure;
+        return ensureUrlProtocol(urlOrigin);
     }
 
     /*
@@ -63,7 +61,7 @@ public class UrlImplement implements UrlService {
         * hash no se repitan
         * */
         do{
-            hashShort = UrlUtilidad.hash();
+            hashShort = HashUtility.hash(8);
         }while (urlRepository.existsByHashShort(hashShort));
 
         // Guarda los elementos en la entidad urls para almacenar en la base de datos
