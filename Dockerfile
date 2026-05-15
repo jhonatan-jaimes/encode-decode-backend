@@ -1,21 +1,36 @@
-# Etapa 1: Build con Maven
-FROM maven:3.9.8-eclipse-temurin-17 AS builder
+# =========================
+# BUILD STAGE
+# =========================
+FROM ghcr.io/graalvm/native-image-community:21 AS builder
+
 WORKDIR /app
 
-COPY pom.xml .
-RUN mvn dependency:go-offline
+# Copiar archivos del proyecto
+COPY . .
 
-COPY src ./src
-RUN mvn clean package -DskipTests
+# Dar permisos al wrapper
+RUN chmod +x mvnw
 
-# Etapa 2: Imagen final
-FROM eclipse-temurin:17-jdk
+# Compilar Native Image
+RUN ./mvnw -Pnative native:compile -DskipTests
+
+# =========================
+# RUNTIME STAGE
+# =========================
+FROM debian:bookworm-slim
+
 WORKDIR /app
 
-COPY --from=builder /app/target/*.jar app.jar
+# Instalar certificados SSL
+RUN apt-get update && \
+    apt-get install -y ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
-# Cloud Run asigna el puerto dinámicamente, pero se comunica por 8080
-ENV PORT=8080
+# Copiar ejecutable nativo
+COPY --from=builder /app/target/encode-decode ./app
+
+# Puerto usado por Cloud Run
 EXPOSE 8080
 
-ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT} -jar app.jar"]
+# Ejecutar aplicación
+CMD ["./app"]
