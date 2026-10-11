@@ -16,10 +16,12 @@ import java.net.URL;
 public class UrlImplement implements UrlService {
 
     private final UrlRepository urlRepository;
+    private final HashUtility hashUtility;
 
     @Autowired
     public UrlImplement(UrlRepository urlRepository) {
         this.urlRepository = urlRepository;
+        this.hashUtility = new HashUtility();
     }
 
     /*
@@ -64,7 +66,7 @@ public class UrlImplement implements UrlService {
         * hash no se repitan
         * */
         do{
-            hashShort = HashUtility.hash(8);
+            hashShort = hashUtility.hash(8);
         }while (urlRepository.existsByHashShort(hashShort));
 
         // Guarda los elementos en la entidad urls para almacenar en la base de datos
