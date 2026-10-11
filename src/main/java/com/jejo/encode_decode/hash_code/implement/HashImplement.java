@@ -18,6 +18,6 @@ public class HashImplement implements HashService {
   @Override
   public HashOutDot getHash(HashDto hashDto) {
 
-    return new HashOutDot(hashUtility.hash(hashDto.lenght()));
+    return new HashOutDot(hashUtility.hash(hashDto.value()));
   }
 }

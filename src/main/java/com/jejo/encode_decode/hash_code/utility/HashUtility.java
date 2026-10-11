@@ -12,15 +12,15 @@ public class HashUtility {
   private final List<String> charUtb = new ArrayList<>();
 
   public HashUtility() {
-    for (char chr = '0'; chr < '9'; chr++) {
+    for (char chr = '0'; chr <= '9'; chr++) {
       charUtb.add(String.valueOf(chr));
     }
 
-    for (char chr = 'a'; chr < 'z'; chr++) {
+    for (char chr = 'a'; chr <= 'z'; chr++) {
       charUtb.add(String.valueOf(chr));
     }
 
-    for (char chr = 'A'; chr < 'Z'; chr++) {
+    for (char chr = 'A'; chr <= 'Z'; chr++) {
       charUtb.add(String.valueOf(chr));
     }
   }

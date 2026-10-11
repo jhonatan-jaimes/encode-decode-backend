@@ -7,6 +7,6 @@ public record HashDto(
     @Positive(message = "No puede ser negativo la escala")
     @Max(value = 160, message = "Maximo 160 caracteres")
     @Min(value = 16, message = "Minimo 16 caracteres")
-    Integer lenght
+    Integer value
 ) {
 }
