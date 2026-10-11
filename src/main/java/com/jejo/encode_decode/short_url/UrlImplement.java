@@ -1,11 +1,9 @@
-package com.jejo.encode_decode.short_url.implement;
+package com.jejo.encode_decode.short_url;
 
 import com.jejo.encode_decode.short_url.dto.UrlDto;
 import com.jejo.encode_decode.short_url.entity.UrlEntity;
-import com.jejo.encode_decode.short_url.repository.UrlRepository;
-import com.jejo.encode_decode.short_url.service.UrlService;
 import com.jejo.encode_decode.text.entity.TextEntity;
-import com.jejo.encode_decode.hash_code.utility.HashUtility;
+import com.jejo.encode_decode.hash_code.HashUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

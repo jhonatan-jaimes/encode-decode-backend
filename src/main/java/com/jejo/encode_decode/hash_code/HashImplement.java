@@ -1,9 +1,7 @@
-package com.jejo.encode_decode.hash_code.implement;
+package com.jejo.encode_decode.hash_code;
 
 import com.jejo.encode_decode.hash_code.dto.HashDto;
 import com.jejo.encode_decode.hash_code.dto.HashOutDot;
-import com.jejo.encode_decode.hash_code.service.HashService;
-import com.jejo.encode_decode.hash_code.utility.HashUtility;
 import org.springframework.stereotype.Service;
 
 @Service

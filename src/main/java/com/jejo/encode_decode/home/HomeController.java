@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.config;
+package com.jejo.encode_decode.home;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ public class HomeController {
     * en reiniciar el servicio en su capa gratuita.
     * */
     @GetMapping("/wake-up")
-    public ResponseEntity<?> wakeUp(){
+    public ResponseEntity<HomeDto> wakeUp(){
 
         // Retorna el status 200 OK nada mas.
-        return ResponseEntity.status(HttpStatus.OK).body("Despertado");
+        return ResponseEntity.status(HttpStatus.OK).body(new HomeDto("He despertado"));
     }
 }

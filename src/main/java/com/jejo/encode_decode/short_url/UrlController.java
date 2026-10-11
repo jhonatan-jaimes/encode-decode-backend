@@ -1,7 +1,6 @@
-package com.jejo.encode_decode.short_url.controller;
+package com.jejo.encode_decode.short_url;
 
 import com.jejo.encode_decode.short_url.dto.UrlDto;
-import com.jejo.encode_decode.short_url.service.UrlService;
 import com.jejo.encode_decode.text.entity.TextEntity;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

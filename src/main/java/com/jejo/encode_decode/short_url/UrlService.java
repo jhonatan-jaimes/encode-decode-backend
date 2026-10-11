@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.short_url.service;
+package com.jejo.encode_decode.short_url;
 
 import com.jejo.encode_decode.short_url.dto.UrlDto;
 import com.jejo.encode_decode.text.entity.TextEntity;

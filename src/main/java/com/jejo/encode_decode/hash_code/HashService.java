@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.hash_code.service;
+package com.jejo.encode_decode.hash_code;
 
 import com.jejo.encode_decode.hash_code.dto.HashDto;
 import com.jejo.encode_decode.hash_code.dto.HashOutDot;

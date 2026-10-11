@@ -1,9 +1,8 @@
-package com.jejo.encode_decode.text.implement;
+package com.jejo.encode_decode.text;
 
 import com.jejo.encode_decode.text.dto.TextDto;
 import com.jejo.encode_decode.text.entity.TextEntity;
 import com.jejo.encode_decode.text.maps.*;
-import com.jejo.encode_decode.text.service.TextService;
 import com.jejo.encode_decode.text.utility.Code;
 import org.springframework.stereotype.Service;
 

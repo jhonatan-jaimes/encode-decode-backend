@@ -1,8 +1,7 @@
-package com.jejo.encode_decode.qr_text.controller;
+package com.jejo.encode_decode.qr_text;
 
 import com.jejo.encode_decode.qr_text.dto.QrTextDto;
 import com.jejo.encode_decode.qr_text.entity.QrEntity;
-import com.jejo.encode_decode.qr_text.service.QrServices;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

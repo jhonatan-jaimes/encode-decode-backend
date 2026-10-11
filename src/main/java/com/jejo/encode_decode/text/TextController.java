@@ -1,8 +1,7 @@
-package com.jejo.encode_decode.text.controller;
+package com.jejo.encode_decode.text;
 
 import com.jejo.encode_decode.text.dto.TextDto;
 import com.jejo.encode_decode.text.entity.TextEntity;
-import com.jejo.encode_decode.text.service.TextService;
 import jakarta.validation.Valid;
 
 

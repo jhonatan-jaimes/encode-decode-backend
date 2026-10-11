@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.text.service;
+package com.jejo.encode_decode.text;
 
 import com.jejo.encode_decode.text.dto.TextDto;
 import com.jejo.encode_decode.text.entity.TextEntity;

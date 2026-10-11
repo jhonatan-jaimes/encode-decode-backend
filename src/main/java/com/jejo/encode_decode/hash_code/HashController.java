@@ -1,8 +1,7 @@
-package com.jejo.encode_decode.hash_code.controller;
+package com.jejo.encode_decode.hash_code;
 
 import com.jejo.encode_decode.hash_code.dto.HashDto;
 import com.jejo.encode_decode.hash_code.dto.HashOutDot;
-import com.jejo.encode_decode.hash_code.service.HashService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

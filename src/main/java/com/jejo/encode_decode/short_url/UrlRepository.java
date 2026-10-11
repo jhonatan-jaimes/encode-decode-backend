@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.short_url.repository;
+package com.jejo.encode_decode.short_url;
 
 import com.jejo.encode_decode.short_url.entity.UrlEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

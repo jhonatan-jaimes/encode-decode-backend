@@ -1,4 +1,4 @@
-package com.jejo.encode_decode.hash_code.utility;
+package com.jejo.encode_decode.hash_code;
 
 import java.util.ArrayList;
 import java.util.List;
